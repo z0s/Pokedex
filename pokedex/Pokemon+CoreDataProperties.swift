@@ -18,7 +18,7 @@ extension Pokemon {
     @NSManaged var imageData: NSData?
     @NSManaged var type: String?
     @NSManaged var descriptionString: String?
-    @NSManaged var id: Int64
+    @NSManaged var id: Int
     @NSManaged var evolvesTo: Pokemon?
     @NSManaged var evolvesFrom: Pokemon?
 

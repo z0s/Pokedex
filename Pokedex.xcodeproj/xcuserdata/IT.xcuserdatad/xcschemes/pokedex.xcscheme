@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
-               BuildableName = "pokedex.app"
+               BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
                BlueprintName = "pokedex"
-               ReferencedContainer = "container:pokedex.xcodeproj">
+               ReferencedContainer = "container:Pokedex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
-            BuildableName = "pokedex.app"
+            BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
             BlueprintName = "pokedex"
-            ReferencedContainer = "container:pokedex.xcodeproj">
+            ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
-            BuildableName = "pokedex.app"
+            BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
             BlueprintName = "pokedex"
-            ReferencedContainer = "container:pokedex.xcodeproj">
+            ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
-            BuildableName = "pokedex.app"
+            BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
             BlueprintName = "pokedex"
-            ReferencedContainer = "container:pokedex.xcodeproj">
+            ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

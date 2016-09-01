@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="16A303a" minimumToolsVersion="Xcode 7.0">
-    <elements/>
+    <entity name="Pokemon" representedClassName=".Pokemon" syncable="YES">
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="evolvesFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="evolvesTo" inverseEntity="Pokemon" syncable="YES"/>
+        <relationship name="evolvesTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="evolvesFrom" inverseEntity="Pokemon" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Pokemon" positionX="-63" positionY="-18" width="128" height="150"/>
+    </elements>
 </model>

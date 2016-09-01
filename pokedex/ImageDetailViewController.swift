@@ -8,12 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImageDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        title = "Pokedex"
+        
+        self.navigationItem.title = "Pokedex"
+        
+        self.title = "PokemonTitle"
+        //view.backgroundColor = UIColor.blueColor()
     }
 
     override func didReceiveMemoryWarning() {

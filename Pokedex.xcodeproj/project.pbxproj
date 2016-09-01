@@ -13,13 +13,17 @@
 		6A26435B1D67D7D000BF64C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A26435A1D67D7D000BF64C2 /* Assets.xcassets */; };
 		6A26435E1D67D7D000BF64C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A26435C1D67D7D000BF64C2 /* LaunchScreen.storyboard */; };
 		6A2643661D6BB40E00BF64C2 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2643651D6BB40E00BF64C2 /* CollectionViewController.swift */; };
+		6A75FB701D7811ED008BADBE /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A75FB6E1D7811ED008BADBE /* Pokemon.swift */; };
+		6A75FB731D7817F5008BADBE /* Pokemon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A75FB711D7817F5008BADBE /* Pokemon+CoreDataProperties.swift */; };
 		6A7A573C1D74D9630002AF97 /* PokeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A573B1D74D9630002AF97 /* PokeAPI.swift */; };
 		6A7A573F1D74DE920002AF97 /* PokemonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A573D1D74DE920002AF97 /* PokemonModel.xcdatamodeld */; };
 		6A7A57431D74DF3F0002AF97 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A57421D74DF3F0002AF97 /* CoreDataStack.swift */; };
+		6A7A57471D74ECB30002AF97 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A57461D74ECB30002AF97 /* CollectionViewCell.swift */; };
+		6A7A57491D74F2E20002AF97 /* PokeAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A57481D74F2E20002AF97 /* PokeAPIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A2643501D67D7D000BF64C2 /* pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2643531D67D7D000BF64C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A2643551D67D7D000BF64C2 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		6A2643581D67D7D000BF64C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -27,9 +31,13 @@
 		6A26435D1D67D7D000BF64C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A26435F1D67D7D000BF64C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A2643651D6BB40E00BF64C2 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		6A75FB6E1D7811ED008BADBE /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pokemon.swift; path = ../Pokemon.swift; sourceTree = "<group>"; };
+		6A75FB711D7817F5008BADBE /* Pokemon+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pokemon+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6A7A573B1D74D9630002AF97 /* PokeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeAPI.swift; sourceTree = "<group>"; };
 		6A7A573E1D74DE920002AF97 /* PokemonModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokemonModel.xcdatamodel; sourceTree = "<group>"; };
 		6A7A57421D74DF3F0002AF97 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		6A7A57461D74ECB30002AF97 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		6A7A57481D74F2E20002AF97 /* PokeAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeAPIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +54,7 @@
 		6A2643471D67D7D000BF64C2 = {
 			isa = PBXGroup;
 			children = (
-				6A2643521D67D7D000BF64C2 /* pokedex */,
+				6A2643521D67D7D000BF64C2 /* Pokedex */,
 				6A2643511D67D7D000BF64C2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,26 +62,63 @@
 		6A2643511D67D7D000BF64C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6A2643501D67D7D000BF64C2 /* pokedex.app */,
+				6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A2643521D67D7D000BF64C2 /* pokedex */ = {
+		6A2643521D67D7D000BF64C2 /* Pokedex */ = {
+			isa = PBXGroup;
+			children = (
+				6A75FB691D781036008BADBE /* Supporting Files */,
+				6A75FB6A1D781048008BADBE /* Controller */,
+				6A75FB6C1D781067008BADBE /* View */,
+				6A75FB6B1D78105C008BADBE /* Model */,
+			);
+			name = Pokedex;
+			path = pokedex;
+			sourceTree = "<group>";
+		};
+		6A75FB691D781036008BADBE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				6A2643531D67D7D000BF64C2 /* AppDelegate.swift */,
-				6A2643551D67D7D000BF64C2 /* ImageDetailViewController.swift */,
-				6A2643571D67D7D000BF64C2 /* Main.storyboard */,
 				6A26435A1D67D7D000BF64C2 /* Assets.xcassets */,
 				6A26435C1D67D7D000BF64C2 /* LaunchScreen.storyboard */,
 				6A26435F1D67D7D000BF64C2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6A75FB6A1D781048008BADBE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6A2643551D67D7D000BF64C2 /* ImageDetailViewController.swift */,
 				6A2643651D6BB40E00BF64C2 /* CollectionViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6A75FB6B1D78105C008BADBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6A75FB711D7817F5008BADBE /* Pokemon+CoreDataProperties.swift */,
+				6A75FB6E1D7811ED008BADBE /* Pokemon.swift */,
 				6A7A573B1D74D9630002AF97 /* PokeAPI.swift */,
 				6A7A573D1D74DE920002AF97 /* PokemonModel.xcdatamodeld */,
 				6A7A57421D74DF3F0002AF97 /* CoreDataStack.swift */,
+				6A7A57481D74F2E20002AF97 /* PokeAPIConstants.swift */,
 			);
-			path = pokedex;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6A75FB6C1D781067008BADBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6A2643571D67D7D000BF64C2 /* Main.storyboard */,
+				6A7A57461D74ECB30002AF97 /* CollectionViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,7 +138,7 @@
 			);
 			name = pokedex;
 			productName = pokedex;
-			productReference = 6A2643501D67D7D000BF64C2 /* pokedex.app */;
+			productReference = 6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6A26434B1D67D7D000BF64C2 /* Build configuration list for PBXProject "pokedex" */;
+			buildConfigurationList = 6A26434B1D67D7D000BF64C2 /* Build configuration list for PBXProject "Pokedex" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -151,9 +196,13 @@
 				6A2643661D6BB40E00BF64C2 /* CollectionViewController.swift in Sources */,
 				6A7A573C1D74D9630002AF97 /* PokeAPI.swift in Sources */,
 				6A2643561D67D7D000BF64C2 /* ImageDetailViewController.swift in Sources */,
+				6A7A57471D74ECB30002AF97 /* CollectionViewCell.swift in Sources */,
 				6A7A57431D74DF3F0002AF97 /* CoreDataStack.swift in Sources */,
+				6A75FB701D7811ED008BADBE /* Pokemon.swift in Sources */,
 				6A7A573F1D74DE920002AF97 /* PokemonModel.xcdatamodeld in Sources */,
 				6A2643541D67D7D000BF64C2 /* AppDelegate.swift in Sources */,
+				6A7A57491D74F2E20002AF97 /* PokeAPIConstants.swift in Sources */,
+				6A75FB731D7817F5008BADBE /* Pokemon+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +320,7 @@
 				INFOPLIST_FILE = pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.z0s.Pokedex;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pokedex.temp_caseinsensitive_rename;
 			};
 			name = Debug;
 		};
@@ -282,14 +331,14 @@
 				INFOPLIST_FILE = pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.z0s.Pokedex;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pokedex.temp_caseinsensitive_rename;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A26434B1D67D7D000BF64C2 /* Build configuration list for PBXProject "pokedex" */ = {
+		6A26434B1D67D7D000BF64C2 /* Build configuration list for PBXProject "Pokedex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A2643601D67D7D000BF64C2 /* Debug */,

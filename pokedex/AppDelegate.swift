@@ -7,15 +7,37 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let stack = CoreDataStack(modelName: "PokemonModel")!
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        for i in 1...10 {
+            PokeAPI.requestPokemonForID(i)
+        }
+        
+        
+        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
+        let idSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [idSortDescriptor]
+        
+        do {
+            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
+                for pokemon in pokemonArray {
+                    print(pokemon.name)
+                }
+            }
+        } catch {
+            
+        }
+        
         return true
     }
 
