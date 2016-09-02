@@ -9,6 +9,27 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    //let image: UIImageView!
+    var imageView: UIImageView
+    override init(frame: CGRect) {
+        imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        super.init(frame: frame)
+        contentView.addSubview(imageView)
+        imageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor).active = true
+        imageView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
+        imageView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
+        imageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var pokemon: Pokemon? {
+        didSet {
+            if let pokemon = pokemon, image = UIImage(named: "\(pokemon.id)") {
+                imageView.image = image
+            }
+        }
+    }
 }
