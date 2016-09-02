@@ -9,22 +9,43 @@
 import UIKit
 
 class ImageDetailViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    
+    
 
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        self.navigationItem.title = "Pokedex"
-        
-        self.title = "PokemonTitle"
-        //view.backgroundColor = UIColor.blueColor()
-    }
+      
+        self.title = "Pokemon"
+        gradientLayer()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        var pokemon: Pokemon! {
+            didSet {
+                if let pokemon = pokemon, image = UIImage(contentsOfFile: pokemon.urlString!) {
+                    imageView.image = image
+                }
+            }
+        }
 
+       // (named: "\(pokemon.id)")
+    
+        
+    }
+    private func gradientLayer() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.bounds
+        gradient.colors = [red.aRed.CGColor as CGColorRef, red.bRed.CGColor as CGColorRef]
+        gradient.locations = [0.0, 1.0]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+    }
 
 }
 
