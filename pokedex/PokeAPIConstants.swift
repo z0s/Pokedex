@@ -31,22 +31,9 @@ extension PokeAPI {
         static let Page = "page"
     }
     
-    // MARK: Flickr Parameter Values
-    struct FlickrParameterValues {
-        static let SearchMethod = "flickr.photos.search"
-        static let APIKey = "9c6ec83037aa0d1bd8da65577a3c6f1b"
-        static let Radius = "5"
-        static let ResponseFormat = "json"
-        static let DisableJSONCallback = "1" /* 1 means "yes" */
-        static let GalleryPhotosMethod = "flickr.galleries.getPhotos"
-        static let GalleryID = "5704-72157622566655097"
-        static let MediumURL = "url_m"
-        static let PerPage = "21"
-        static let UseSafeSearch = "1"
-    }
     
-    // MARK: Flickr Response Keys
-    struct FlickrResponseKeys {
+    // MARK: Pokemon API Response Keys
+    struct PokeResponseKeys {
         static let ID = "id"
         static let Status = "stat"
         static let Photos = "photos"

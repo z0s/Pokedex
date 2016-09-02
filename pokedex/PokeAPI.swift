@@ -14,13 +14,13 @@ struct PokeAPI {
     static let session = NSURLSession.sharedSession()
     
     static func requestPokemonForID(id: Int) {
-        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+        //let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
+        //fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         let stack = (UIApplication.sharedApplication().delegate as? AppDelegate)?.stack
         
-        if let count = stack?.context.countForFetchRequest(fetchRequest, error: nil) where count > 0 {
-            return
-        }        
+//        if let count = stack?.context.countForFetchRequest(fetchRequest, error: nil) where count > 0 {
+//            return
+//        }        
         
         let url = NSURL(string: "http://pokeapi.co/api/v2/pokemon/\(id)/")
         let request = NSURLRequest(URL: url!)
@@ -32,11 +32,23 @@ struct PokeAPI {
             if let data = data {
                 if let jsonDict = try? NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) {
                     dispatch_async(dispatch_get_main_queue(), {
-                        if let name = jsonDict["name"] as? String {
-                            let pokemon = Pokemon(id: id, name: name.capitalizedString)
-                            
-                            stack?.saveContext()
+                        guard let name = jsonDict["name"] as? String else {
+                            return
                         }
+                        
+                        var pokemon: Pokemon
+                        if let pokemonInCoreData = PokemonDataProvider.fetchPokemonForID(id) {
+                            pokemon = pokemonInCoreData
+                        } else {
+                            pokemon = Pokemon(id: id, name: name.capitalizedString)
+                        }
+                        
+                        if let spritesDict = jsonDict["sprites"] as? [String:AnyObject] {
+                            let imageURLString = spritesDict["front_default"] as? String
+                            pokemon.urlString = imageURLString
+                        }
+                        
+                        stack?.saveContext()
                     })
                     
                     print(jsonDict)
