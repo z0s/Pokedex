@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        for i in 1...10 {
-            PokeAPI.requestPokemonForID(i)
-        }
+//        for i in 1...10 {
+//            PokeAPI.requestPokemonForID(i)
+//        }
         
         
         let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
                 for pokemon in pokemonArray {
-                    print(pokemon.name)
+                    print(pokemon.urlString)
                 }
             }
         } catch {
