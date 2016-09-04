@@ -24,16 +24,19 @@ class CollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     var pokemon: Pokemon? {
         didSet {
-        
+            var data: NSData
+            if let imageData = pokemon?.imageData {
+                data = imageData
+            } else {
+                let url = NSURL(string: pokemon!.urlString)
+                data = NSData(contentsOfURL: url!)! //make sure your image in this url does exist, otherwise unwrap in a if let check
+                pokemon?.imageData = data
+                PokemonDataProvider.save()
+            }
+            imageView.image = UIImage(data: data)
         }
     }
-//    var pokemon: Pokemon? {
-//        didSet{
-//            if let pokemon = pokemon, image = UIImage(named: "\(pokemon.id)") {
-//                imageView.image = image
-//            }
-//        }
-//    }
 }
