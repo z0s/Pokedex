@@ -45,8 +45,6 @@ extension CollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
         
         let pokemon = pokemonArray[indexPath.row]
-        
-        
         cell.pokemon = pokemon
         // Configure the cell
         return cell
@@ -59,15 +57,15 @@ extension CollectionViewController: UICollectionViewDataSource {
     
     
 }
-//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
+
 // MARK: UICollectionViewDelegate
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailController: ImageDetailViewController = storyboard.instantiateViewControllerWithIdentifier("ImageDetail") as! ImageDetailViewController
+        
+        let pokemon = pokemonArray[indexPath.row]
+        detailController.pokemon = pokemon
         self.navigationController?.pushViewController(detailController, animated: true)
     }
 }
