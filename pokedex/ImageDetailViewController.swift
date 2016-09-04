@@ -11,34 +11,49 @@ import UIKit
 class ImageDetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     
-    
-
-    
-   
+    var pokemon: Pokemon! {
+        didSet {
+            PokeAPI.requestPokemonDescriptionForID(pokemon.id.integerValue)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-      
-        self.title = "Pokemon"
-        gradientLayer()
-
-        var pokemon: Pokemon! {
-            didSet {
-                if let pokemon = pokemon, image = UIImage(contentsOfFile: pokemon.urlString!) {
-                    imageView.image = image
+    
+        self.title = "\(pokemon.name)"
+        
+        descriptionLabel.text = pokemon.descriptionString
+        for type in pokemon.types {
+            if typeLabel.text == "" {
+                typeLabel.text = type.capitalizedString
+            } else {
+                if let typeString = typeLabel.text {
+                typeLabel.text = typeString + ", " + type.capitalizedString
                 }
             }
         }
+        
+        gradientLayer()
+        
+        if let image = UIImage(named: "\(pokemon.id)") {
+            imageView.image = image
+        }
+        
+        
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(descriptionDownloaded), name: "PokemonDescriptionDidFinishDownloading", object: nil)
 
-       // (named: "\(pokemon.id)")
-    
         
     }
+    
+    func descriptionDownloaded() {
+        descriptionLabel.text = pokemon.descriptionString
+    }
+    
     private func gradientLayer() {
         let gradient = CAGradientLayer()
         gradient.frame = self.view.bounds
