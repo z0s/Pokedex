@@ -16,6 +16,11 @@ class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var pokemonArray = [Pokemon]()
     
+    let errorMessage = "Looks like there is no connection to the internet!"
+    let errorTitle = "No Internet Connection"
+    let errorActionTitle = "OK"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +33,8 @@ class CollectionViewController: UIViewController {
         self.collectionView!.registerClass(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         pokemonArray = PokemonDataProvider.fetchPokemon()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(downloadError), name: "PokemonDownloadError", object: nil)
+
     }
     private func gradientLayer() {
         let gradient = CAGradientLayer()
@@ -35,6 +42,11 @@ class CollectionViewController: UIViewController {
         gradient.colors = [red.aRed.CGColor as CGColorRef, red.bRed.CGColor as CGColorRef]
         gradient.locations = [0.0, 1.0]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
+    }
+    
+    func downloadError() {
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        presentAlert(errorTitle, message: errorMessage, actionTitle: errorActionTitle)
     }
 }
 
