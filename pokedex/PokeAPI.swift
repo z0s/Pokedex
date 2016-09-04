@@ -12,6 +12,7 @@ import CoreData
 struct PokeAPI {
     
     static let session = NSURLSession.sharedSession()
+    static let baseURL = pokemonURLFromParameters(nil)
     
     static func requestPokemonForID(id: Int) {
         //let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
@@ -20,9 +21,9 @@ struct PokeAPI {
         
 //        if let count = stack?.context.countForFetchRequest(fetchRequest, error: nil) where count > 0 {
 //            return
-//        }        
+//        }
         
-        let url = NSURL(string: "http://pokeapi.co/api/v2/pokemon/\(id)/")
+        let url = NSURL(string: "pokemon/\(id)", relativeToURL: baseURL)
         let request = NSURLRequest(URL: url!)
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             guard let urlResponse = response as? NSHTTPURLResponse where (urlResponse.statusCode > 200 || urlResponse.statusCode < 300) else {
@@ -61,7 +62,7 @@ struct PokeAPI {
     
     
     static func requestPokemonDescriptionForID(id: Int) {
-        let url = NSURL(string: "http://pokeapi.co/api/v2/characteristic/\(id)/")
+        let url = NSURL(string: "characteristic/\(id)", relativeToURL: baseURL)
         let task = session.dataTaskWithURL(url!) { (data, response, error) in
             guard let urlResponse = response as? NSHTTPURLResponse where (urlResponse.statusCode > 200 || urlResponse.statusCode < 300) else {
                 return
@@ -79,17 +80,20 @@ struct PokeAPI {
 }
 // MARK: Helper for Creating a URL from Parameters
 
-func pokemonURLFromParameters(parameters: [String:AnyObject]) -> NSURL {
+func pokemonURLFromParameters(parameters: [String:AnyObject]?) -> NSURL {
     let components = NSURLComponents()
     
     components.scheme = PokeAPI.Poke.APIScheme
     components.host = PokeAPI.Poke.APIHost
     components.path = PokeAPI.Poke.APIPath
-    components.queryItems = [NSURLQueryItem]()
+    var queryItems = [NSURLQueryItem]()
     
-    for (key, value) in parameters {
-        let  queryItem = NSURLQueryItem(name: key, value: "\(value)")
-        components.queryItems!.append(queryItem)
+    if let parameters = parameters {
+        for (key, value) in parameters {
+            let  queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            queryItems.append(queryItem)
+        }
+        components.queryItems = queryItems
     }
     return components.URL!
     

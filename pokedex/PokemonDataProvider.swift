@@ -21,8 +21,8 @@ class PokemonDataProvider: NSObject {
             if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
                 return pokemonArray
             }
-        } catch {
-            
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
         
         return []

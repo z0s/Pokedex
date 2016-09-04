@@ -24,12 +24,16 @@ class CollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     var pokemon: Pokemon? {
         didSet {
-            if let pokemon = pokemon, image = UIImage(named: "\(pokemon.id)") {
-                imageView.image = image
-            }
+        
         }
     }
+//    var pokemon: Pokemon? {
+//        didSet{
+//            if let pokemon = pokemon, image = UIImage(named: "\(pokemon.id)") {
+//                imageView.image = image
+//            }
+//        }
+//    }
 }

@@ -45,8 +45,9 @@ extension CollectionViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
         
         let pokemon = pokemonArray[indexPath.row]
-        cell.pokemon = pokemon
         
+        
+        cell.pokemon = pokemon
         // Configure the cell
         return cell
     }

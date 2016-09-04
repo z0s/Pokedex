@@ -15,22 +15,7 @@ extension PokeAPI {
         static let APIPath = "/api/v2/"
     }
     
-    // MARK: Flickr Parameter Keys
-    struct FlickrParameterKeys {
-        static let Method = "method"
-        static let APIKey = "api_key"
-        static let Latitude = "lat"
-        static let Longitude = "lon"
-        static let Radius = "radius"
-        static let GalleryID = "gallery_id"
-        static let Extras = "extras"
-        static let Format = "format"
-        static let NoJSONCallback = "nojsoncallback"
-        static let SafeSearch = "safe_search"
-        static let PerPage = "per_page"
-        static let Page = "page"
-    }
-    
+    // http://pokeapi.co/api/v2/
     
     // MARK: Pokemon API Response Keys
     struct PokeResponseKeys {
