@@ -32,7 +32,16 @@ struct PokeAPI {
         let url = NSURL(string: "pokemon/\(id)", relativeToURL: baseURL)
         let request = NSURLRequest(URL: url!)
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                let note = NSNotification(name: "PokemonDownloadError", object: nil)
+                NSNotificationCenter.defaultCenter().postNotification(note)
+                return
+            }
+            
             guard let urlResponse = response as? NSHTTPURLResponse where (urlResponse.statusCode > 200 || urlResponse.statusCode < 300) else {
+                let note = NSNotification(name: "PokemonDownloadError", object: nil)
+                NSNotificationCenter.defaultCenter().postNotification(note)
                 return
             }
             
