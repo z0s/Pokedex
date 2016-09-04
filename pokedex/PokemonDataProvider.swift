@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class PokemonDataProvider: NSObject {
-    static let stack = (UIApplication.sharedApplication().delegate as! AppDelegate).stack
+    static private let stack = (UIApplication.sharedApplication().delegate as! AppDelegate).stack
     
     class func fetchPokemon() -> [Pokemon] {
         let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
@@ -41,5 +41,9 @@ class PokemonDataProvider: NSObject {
         }
         
         return nil
+    }
+    
+    class func save() {
+        stack.saveContext()
     }
 }

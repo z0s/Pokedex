@@ -14,12 +14,12 @@ import CoreData
 
 extension Pokemon {
 
-    @NSManaged var name: String?
+    @NSManaged var name: String
     @NSManaged var imageData: NSData?
-    @NSManaged var type: String?
-    @NSManaged var descriptionString: String?
-    @NSManaged var id: NSNumber?
-    @NSManaged var urlString: String?
+    @NSManaged var types: [String]
+    @NSManaged var descriptionString: String
+    @NSManaged var id: NSNumber
+    @NSManaged var urlString: String
     @NSManaged var evolvesTo: Pokemon?
     @NSManaged var evolvesFrom: Pokemon?
 
