@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
                BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
-               BlueprintName = "pokedex"
+               BlueprintName = "Pokedex"
                ReferencedContainer = "container:Pokedex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
             BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
-            BlueprintName = "pokedex"
+            BlueprintName = "Pokedex"
             ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,7 +57,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
             BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
-            BlueprintName = "pokedex"
+            BlueprintName = "Pokedex"
             ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -76,7 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6A26434F1D67D7D000BF64C2"
             BuildableName = "Pokedex.temp_caseinsensitive_rename.app"
-            BlueprintName = "pokedex"
+            BlueprintName = "Pokedex"
             ReferencedContainer = "container:Pokedex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

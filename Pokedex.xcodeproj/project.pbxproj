@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2643501D67D7D000BF64C2 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A2643531D67D7D000BF64C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A2643551D67D7D000BF64C2 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		6A2643581D67D7D000BF64C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		6A2643511D67D7D000BF64C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */,
+				6A2643501D67D7D000BF64C2 /* Pokedex.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,9 +130,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6A26434F1D67D7D000BF64C2 /* pokedex */ = {
+		6A26434F1D67D7D000BF64C2 /* Pokedex */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A2643621D67D7D000BF64C2 /* Build configuration list for PBXNativeTarget "pokedex" */;
+			buildConfigurationList = 6A2643621D67D7D000BF64C2 /* Build configuration list for PBXNativeTarget "Pokedex" */;
 			buildPhases = (
 				6A26434C1D67D7D000BF64C2 /* Sources */,
 				6A26434D1D67D7D000BF64C2 /* Frameworks */,
@@ -142,9 +142,9 @@
 			);
 			dependencies = (
 			);
-			name = pokedex;
+			name = Pokedex;
 			productName = pokedex;
-			productReference = 6A2643501D67D7D000BF64C2 /* Pokedex.temp_caseinsensitive_rename.app */;
+			productReference = 6A2643501D67D7D000BF64C2 /* Pokedex.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -176,7 +176,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6A26434F1D67D7D000BF64C2 /* pokedex */,
+				6A26434F1D67D7D000BF64C2 /* Pokedex */,
 			);
 		};
 /* End PBXProject section */
@@ -325,10 +325,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = pokedex/Info.plist;
+				INFOPLIST_FILE = Pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.z0s.Pokedex;
-				PRODUCT_NAME = Pokedex.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Pokedex;
 			};
 			name = Debug;
 		};
@@ -336,10 +336,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = pokedex/Info.plist;
+				INFOPLIST_FILE = Pokedex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.z0s.Pokedex;
-				PRODUCT_NAME = Pokedex.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Pokedex;
 			};
 			name = Release;
 		};
@@ -355,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A2643621D67D7D000BF64C2 /* Build configuration list for PBXNativeTarget "pokedex" */ = {
+		6A2643621D67D7D000BF64C2 /* Build configuration list for PBXNativeTarget "Pokedex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A2643631D67D7D000BF64C2 /* Debug */,
