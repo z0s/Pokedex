@@ -19,23 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        for i in 1...10 {
-            PokeAPI.requestPokemonForID(i)
-        }
-        
-        
         let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
         let idSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         fetchRequest.sortDescriptors = [idSortDescriptor]
         
         do {
             if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
-                for pokemon in pokemonArray {
-                    print(pokemon.urlString)
+                if let lastIdDownloaded = pokemonArray.last?.id {
+                    let spinner = window?.rootViewController?.showSpinner()
+                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+                    PokeAPI.requestAllPokemon(lastIdDownloaded.integerValue, completion: { (success) in
+                        if success {
+                            spinner?.hide()
+                           UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                        }
+                    })
                 }
             }
-        } catch {
-            
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
         
         return true
