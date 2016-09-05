@@ -16,7 +16,7 @@ class ImageDetailViewController: UIViewController {
     
     var pokemon: Pokemon! {
         didSet {
-            PokeAPI.requestPokemonDescriptionForID(pokemon.id.integerValue)
+            PokeAPI.requestPokemonDescriptionForID(pokemon.id.unsignedIntegerValue)
         }
     }
     
