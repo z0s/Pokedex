@@ -12,10 +12,10 @@ import UIKit
 class Pokemon: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
-    convenience init(id: Int, name: String) {
+    convenience init(id: UInt, name: String) {
         if let context = (UIApplication.sharedApplication().delegate as? AppDelegate)?.stack.context, ent = NSEntityDescription.entityForName(Pokemon.entityName(), inManagedObjectContext: context) {
             self.init(entity: ent, insertIntoManagedObjectContext: context)
-            self.id = id
+            self.id = NSNumber(unsignedInteger: id)
             self.name = name
         } else {
             fatalError("Unable to find Entity name!")
