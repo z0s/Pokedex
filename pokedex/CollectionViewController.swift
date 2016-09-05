@@ -21,6 +21,7 @@ class CollectionViewController: UIViewController {
     let errorTitle = "No Internet Connection"
     let errorActionTitle = "OK"
     
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +37,24 @@ class CollectionViewController: UIViewController {
         pokemonArray = PokemonDataProvider.fetchPokemon()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(downloadError), name: "PokemonDownloadError", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(dataUpdated), name: NSManagedObjectContextObjectsDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(downloadFinished), name: "PokemonDidFinishDownloading", object: nil)
 
+        refreshControl.tintColor = UIColor.grayColor()
+        refreshControl.addTarget(self, action: #selector(fetchMorePokemon), forControlEvents: .ValueChanged)
+        
+        self.collectionView.addSubview(refreshControl)
+        self.collectionView.alwaysBounceVertical = true
+        
     }
+    
+    func downloadFinished() {
+        refreshControl.endRefreshing()
+    }
+    
+    func fetchMorePokemon() {
+        PokeAPI.fetchNext15Pokemon()
+    }
+    
     private func gradientLayer() {
         let gradient = CAGradientLayer()
         gradient.frame = self.view.bounds
