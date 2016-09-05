@@ -9,39 +9,96 @@
 import UIKit
 import CoreData
 
-typealias CompletionBlock = (success: Bool) -> Void
+typealias CompletionBlock = (allDownloadsCompleted: Bool, error: NSError?) -> Void
 
 struct PokeAPI {
     
     static let session = NSURLSession.sharedSession()
     static let baseURL = pokemonURLFromParameters(nil)
     
-    static func requestAllPokemon(startID: Int, completion: CompletionBlock?) {
-        for i in startID...151 {
-            PokeAPI.requestPokemonForID(i, completion: { (success) in
-                if success {
-                    if let completion = completion {
-                        completion(success: true)
+    static func fetchNext15Pokemon() {
+        session.getAllTasksWithCompletionHandler({ tasks in
+            if tasks.count > 0 {
+                return
+            }
+        })
+        
+        // all existing Pokemon in DB
+        let pokemonArray = PokemonDataProvider.fetchPokemon()
+        
+        var startID: UInt
+        if let lastIdDownloaded = pokemonArray.last?.id {
+            startID = lastIdDownloaded.unsignedIntegerValue
+        } else {
+            startID = 0
+        }
+        
+        if startID < 151 {
+            let window = (UIApplication.sharedApplication().delegate as? AppDelegate)?.window
+            if let rootVC = window?.rootViewController {
+                for view in rootVC.view.subviews {
+                    if view is UIActivityIndicatorView {
+                        view.removeFromSuperview()
                     }
+                }
+            }
+            let spinner = window?.rootViewController?.showSpinner()
+            PokeAPI.requestPokemon(startID, num: 15, completion: { (allDownloadsCompleted, error) in
+                if let rootVC = window?.rootViewController {
+                    for view in rootVC.view.subviews {
+                        if view is UIActivityIndicatorView {
+                            view.removeFromSuperview()
+                        }
+                    }
+                }
+                spinner?.hide()
+            })
+        }
+    }
+    
+    static func requestPokemon(startID: UInt, num: UInt, completion: CompletionBlock?) {
+        var endID = startID + num
+        endID = min(151, endID)
+        for i in startID...endID {
+            PokeAPI.requestPokemonForID(i, completion: { (allDownloadsCompleted, error) in
+                if let completion = completion {
+                    completion(allDownloadsCompleted: allDownloadsCompleted, error: error)
                 }
             })
         }
     }
     
-    static func requestPokemonForID(id: Int, completion: CompletionBlock?) {
+    static func requestPokemonForID(id: UInt, completion: CompletionBlock?) {
+        if let _ = PokemonDataProvider.fetchPokemonForID(id) {
+            return
+        }
+        
+        session.getAllTasksWithCompletionHandler { tasks in
+            for task in tasks {
+                if task.taskDescription == "\(id)" {
+                    return
+                }
+            }
+        }
+        
         let url = NSURL(string: "pokemon/\(id)", relativeToURL: baseURL)
         let request = NSURLRequest(URL: url!)
+        
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             if let error = error {
                 print(error.localizedDescription)
-                let note = NSNotification(name: "PokemonDownloadError", object: nil)
-                NSNotificationCenter.defaultCenter().postNotification(note)
+                if error.code == NSURLErrorNotConnectedToInternet {
+                    let note = NSNotification(name: "PokemonDownloadError", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotification(note)
+                }
+                
+                if let completion = completion {
+                    completion(allDownloadsCompleted: false, error: error)
+                }
                 return
             }
             
             guard let urlResponse = response as? NSHTTPURLResponse where (urlResponse.statusCode > 200 || urlResponse.statusCode < 300) else {
-                let note = NSNotification(name: "PokemonDownloadError", object: nil)
-                NSNotificationCenter.defaultCenter().postNotification(note)
                 return
             }
             
@@ -51,10 +108,10 @@ struct PokeAPI {
                         guard let name = jsonDict["name"] as? String else {
                             return
                         }
-                        
+                    
                         var pokemon: Pokemon
-                        if let pokemonInCoreData = PokemonDataProvider.fetchPokemonForID(id) {
-                            pokemon = pokemonInCoreData
+                        if let pokemonInDB = PokemonDataProvider.fetchPokemonForID(id) {
+                            pokemon = pokemonInDB
                         } else {
                             pokemon = Pokemon(id: id, name: name.capitalizedString)
                         }
@@ -82,11 +139,7 @@ struct PokeAPI {
                         session.getAllTasksWithCompletionHandler({ tasks in
                             if tasks.count == 0 {
                                 if let completion = completion {
-                                    completion(success: true)
-                                }
-                            } else {
-                                if let completion = completion {
-                                    completion(success: false)
+                                    completion(allDownloadsCompleted: true, error: nil)
                                 }
                             }
                         })
@@ -97,11 +150,13 @@ struct PokeAPI {
             }
         }
         
+        task.taskDescription = "\(id)"
+        
         task.resume()
     }
     
     
-    static func requestPokemonDescriptionForID(id: Int) {
+    static func requestPokemonDescriptionForID(id: UInt) {
     
         let url = NSURL(string: "characteristic/\(id)", relativeToURL: baseURL)
         let task = session.dataTaskWithURL(url!) { (data, response, error) in
@@ -138,6 +193,37 @@ struct PokeAPI {
         }
         task.resume()
         
+    }
+    
+    static func requestImageForPokemon(pokemon: Pokemon, completion: ((image: UIImage?, error: NSError?) -> Void)?) {
+        let url = NSURL(string: pokemon.urlString)!
+        let task = session.dataTaskWithURL(url) { (data, response, error) in
+            guard let urlResponse = response as? NSHTTPURLResponse where (urlResponse.statusCode > 200 || urlResponse.statusCode < 300) else {
+                if let completion = completion {
+                    completion(image: nil, error: nil)
+                }
+                return
+            }
+            if let error = error {
+                if let completion = completion {
+                    completion(image: nil, error: error)
+                }
+                return
+            }
+            
+            if let data = data {
+                dispatch_async(dispatch_get_main_queue(), {
+                    pokemon.imageData = data
+                    PokemonDataProvider.save()
+                    let image = UIImage(data: data)
+                    if let completion = completion {
+                        completion(image: image, error: nil)
+                    }
+                })
+            }
+        }
+        
+        task.resume()
     }
     
 }
