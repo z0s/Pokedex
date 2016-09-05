@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "Cell"
 
@@ -34,6 +35,7 @@ class CollectionViewController: UIViewController {
         
         pokemonArray = PokemonDataProvider.fetchPokemon()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(downloadError), name: "PokemonDownloadError", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(dataUpdated), name: NSManagedObjectContextObjectsDidChangeNotification, object: nil)
 
     }
     private func gradientLayer() {
@@ -45,8 +47,12 @@ class CollectionViewController: UIViewController {
     }
     
     func downloadError() {
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
         presentAlert(errorTitle, message: errorMessage, actionTitle: errorActionTitle)
+    }
+    
+    func dataUpdated() {
+        pokemonArray = PokemonDataProvider.fetchPokemon()
+        collectionView.reloadData()
     }
 }
 
@@ -79,6 +85,15 @@ extension CollectionViewController: UICollectionViewDelegate {
         let pokemon = pokemonArray[indexPath.row]
         detailController.pokemon = pokemon
         self.navigationController?.pushViewController(detailController, animated: true)
+    }
+}
+
+extension CollectionViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height)) {
+            //reach bottom
+            PokeAPI.fetchNext15Pokemon()
+        }
     }
 }
 
