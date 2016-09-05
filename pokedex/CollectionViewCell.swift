@@ -27,16 +27,32 @@ class CollectionViewCell: UICollectionViewCell {
     
     var pokemon: Pokemon? {
         didSet {
-            var data: NSData
-            if let imageData = pokemon?.imageData {
-                data = imageData
-            } else {
-                let url = NSURL(string: pokemon!.urlString)
-                data = NSData(contentsOfURL: url!)! //make sure your image in this url does exist, otherwise unwrap in a if let check
-                pokemon?.imageData = data
-                PokemonDataProvider.save()
+            if pokemon == nil {
+                imageView.image = nil
+                return
             }
-            imageView.image = UIImage(data: data)
+            
+            if let imageData = pokemon?.imageData {
+                let image = UIImage(data: imageData)
+                imageView.image = image
+            } else {
+                if let originalPokemon = pokemon {
+                    PokeAPI.requestImageForPokemon(originalPokemon, completion: { (image, error) in
+                        if let image = image {
+                            if let currentPokemon = self.pokemon {
+                                if currentPokemon.id.integerValue == originalPokemon.id.integerValue {
+                                    self.imageView.image = image
+                                }
+                            }
+                        }
+                    })
+                }
+            }
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        pokemon = nil
     }
 }
