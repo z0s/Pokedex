@@ -28,7 +28,7 @@ class PokemonDataProvider: NSObject {
         return []
     }
     
-    class func fetchPokemonForID(id: Int) -> Pokemon? {
+    class func fetchPokemonForID(id: UInt) -> Pokemon? {
         let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         
