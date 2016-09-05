@@ -33,6 +33,7 @@ extension UIViewController {
     func showSpinner() -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         dispatch_async(dispatch_get_main_queue(), {
+            spinner.hidesWhenStopped = true
             spinner.center = self.view.center
             spinner.color = UIColor.orangeColor()
             self.view.addSubview(spinner)
