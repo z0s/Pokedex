@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  pokedex
+//  ImageDetailViewController.swift
+//  Pokedex
 //
 //  Created by IT on 8/19/16.
 //  Copyright © 2016 z0s. All rights reserved.
@@ -23,7 +23,7 @@ class ImageDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.title = "\(pokemon.name)"
+        title = "\(pokemon.name)"
         
         descriptionLabel.text = pokemon.descriptionString
         for type in pokemon.types {
