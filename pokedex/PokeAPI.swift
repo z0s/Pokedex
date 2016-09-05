@@ -33,6 +33,8 @@ struct PokeAPI {
             startID = 0
         }
         
+        let note = NSNotification(name: "PokemonDidFinishDownloading", object: nil)
+        
         if startID < 151 {
             let window = (UIApplication.sharedApplication().delegate as? AppDelegate)?.window
             if let rootVC = window?.rootViewController {
@@ -44,6 +46,7 @@ struct PokeAPI {
             }
             let spinner = window?.rootViewController?.showSpinner()
             PokeAPI.requestPokemon(startID, num: 15, completion: { (allDownloadsCompleted, error) in
+                NSNotificationCenter.defaultCenter().postNotification(note)
                 if let rootVC = window?.rootViewController {
                     for view in rootVC.view.subviews {
                         if view is UIActivityIndicatorView {
@@ -53,6 +56,8 @@ struct PokeAPI {
                 }
                 spinner?.hide()
             })
+        } else {
+            NSNotificationCenter.defaultCenter().postNotification(note)
         }
     }
     
@@ -144,8 +149,6 @@ struct PokeAPI {
                             }
                         })
                     })
-                    
-                    print(jsonDict)
                 }
             }
         }
