@@ -21,30 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PokeAPI.fetchNext15Pokemon()
         
-//        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
-//        let idSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-//        fetchRequest.sortDescriptors = [idSortDescriptor]
-//        
-//        do {
-//            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
-//                var startID: UInt
-//                if let lastIdDownloaded = pokemonArray.last?.id {
-//                    startID = lastIdDownloaded.unsignedIntegerValue
-//                } else {
-//                    startID = 0
-//                }
-//                
-//                if startID < 151 {
-//                    let spinner = window?.rootViewController?.showSpinner()
-//                    PokeAPI.requestPokemon(startID, num: 30, completion: { (allDownloadsCompleted, error) in
-//                        spinner?.hide()
-//                    })
-//                }
-//            }
-//        } catch let error as NSError {
-//            print(error.localizedDescription)
-//        }
-//        
         return true
     }
 
@@ -69,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 
