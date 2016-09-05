@@ -19,27 +19,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
-        let idSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-        fetchRequest.sortDescriptors = [idSortDescriptor]
+        PokeAPI.fetchNext15Pokemon()
         
-        do {
-            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
-                if let lastIdDownloaded = pokemonArray.last?.id {
-                    let spinner = window?.rootViewController?.showSpinner()
-                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-                    PokeAPI.requestAllPokemon(lastIdDownloaded.integerValue, completion: { (success) in
-                        if success {
-                            spinner?.hide()
-                           UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                        }
-                    })
-                }
-            }
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
+//        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
+//        let idSortDescriptor = NSSortDescriptor(key: "id", ascending: true)
+//        fetchRequest.sortDescriptors = [idSortDescriptor]
+//        
+//        do {
+//            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
+//                var startID: UInt
+//                if let lastIdDownloaded = pokemonArray.last?.id {
+//                    startID = lastIdDownloaded.unsignedIntegerValue
+//                } else {
+//                    startID = 0
+//                }
+//                
+//                if startID < 151 {
+//                    let spinner = window?.rootViewController?.showSpinner()
+//                    PokeAPI.requestPokemon(startID, num: 30, completion: { (allDownloadsCompleted, error) in
+//                        spinner?.hide()
+//                    })
+//                }
+//            }
+//        } catch let error as NSError {
+//            print(error.localizedDescription)
+//        }
+//        
         return true
     }
 
