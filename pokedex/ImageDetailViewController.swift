@@ -14,6 +14,10 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     
+  
+    @IBAction func infoButton(sender: UIButton) {
+        presentAlert("\(pokemon.name.capitalizedString)", message: "Pokedex number: \(pokemon.id)", actionTitle: "Return")
+    }
     var pokemon: Pokemon! {
         didSet {
             PokeAPI.requestPokemonDescriptionForID(pokemon.id.unsignedIntegerValue)
