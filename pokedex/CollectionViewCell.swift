@@ -15,10 +15,10 @@ class CollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         super.init(frame: frame)
         contentView.addSubview(imageView)
-        imageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor).active = true
-        imageView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor).active = true
-        imageView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor).active = true
-        imageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor).active = true
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,14 +33,14 @@ class CollectionViewCell: UICollectionViewCell {
             }
             
             if let imageData = pokemon?.imageData {
-                let image = UIImage(data: imageData)
+                let image = UIImage(data: imageData as Data)
                 imageView.image = image
             } else {
                 if let originalPokemon = pokemon {
                     PokeAPI.requestImageForPokemon(originalPokemon, completion: { (image, error) in
                         if let image = image {
                             if let currentPokemon = self.pokemon {
-                                if currentPokemon.id.integerValue == originalPokemon.id.integerValue {
+                                if currentPokemon.id.intValue == originalPokemon.id.intValue {
                                     self.imageView.image = image
                                 }
                             }
