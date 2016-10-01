@@ -10,17 +10,16 @@ import UIKit
 import CoreData
 
 class PokemonDataProvider: NSObject {
-    static private let stack = (UIApplication.sharedApplication().delegate as! AppDelegate).stack
+    static fileprivate let stack = (UIApplication.shared.delegate as! AppDelegate).stack
     
     class func fetchPokemon() -> [Pokemon] {
-        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
+        let fetchRequest = NSFetchRequest<Pokemon>(entityName: Pokemon.entityName())
         let idSortDescriptor = NSSortDescriptor(key: PokeAPI.PokeResponseKeys.ID, ascending: true)
         fetchRequest.sortDescriptors = [idSortDescriptor]
         
         do {
-            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
-                return pokemonArray
-            }
+            let pokemonArray = try stack.context.fetch(fetchRequest)
+            return pokemonArray
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -28,14 +27,13 @@ class PokemonDataProvider: NSObject {
         return []
     }
     
-    class func fetchPokemonForID(id: UInt) -> Pokemon? {
-        let fetchRequest = NSFetchRequest(entityName: Pokemon.entityName())
+    class func fetchPokemonForID(_ id: UInt) -> Pokemon? {
+        let fetchRequest = NSFetchRequest<Pokemon>(entityName: Pokemon.entityName())
         fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         
         do {
-            if let pokemonArray = try stack.context.executeFetchRequest(fetchRequest) as? [Pokemon] {
-                return pokemonArray.first
-            }
+            let pokemonArray = try stack.context.fetch(fetchRequest)
+            return pokemonArray.first
         } catch {
             
         }
