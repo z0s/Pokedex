@@ -15,27 +15,27 @@ extension UIViewController {
         static let bRed = UIColor(red: 0.6392, green: 0, blue: 0.0078, alpha: 1.0)
     }
     
-    func presentAlert(title: String, message: String, actionTitle: String) {
+    func presentAlert(_ title: String, message: String, actionTitle: String) {
         
-        let alertControllerStyle = UIAlertControllerStyle.Alert
+        let alertControllerStyle = UIAlertControllerStyle.alert
         let alertView = UIAlertController(title: title, message: message, preferredStyle: alertControllerStyle)
         
-        let alertActionStyle = UIAlertActionStyle.Default
+        let alertActionStyle = UIAlertActionStyle.default
         let alertActionOK = UIAlertAction(title: actionTitle, style: alertActionStyle, handler: nil)
         
         alertView.addAction(alertActionOK)
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.presentViewController(alertView, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            self.present(alertView, animated: true, completion: nil)
         })
     }
    
     func showSpinner() -> UIActivityIndicatorView {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        dispatch_async(dispatch_get_main_queue(), {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        DispatchQueue.main.async(execute: {
             spinner.hidesWhenStopped = true
             spinner.center = self.view.center
-            spinner.color = UIColor.orangeColor()
+            spinner.color = UIColor.orange
             self.view.addSubview(spinner)
             spinner.startAnimating()
         })
@@ -47,7 +47,7 @@ extension UIViewController {
 }
 extension UIActivityIndicatorView {
     func hide() {
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.stopAnimating()
             self.removeFromSuperview()
         })
