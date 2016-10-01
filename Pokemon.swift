@@ -13,9 +13,9 @@ class Pokemon: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     convenience init(id: UInt, name: String) {
-        if let context = (UIApplication.sharedApplication().delegate as? AppDelegate)?.stack.context, ent = NSEntityDescription.entityForName(Pokemon.entityName(), inManagedObjectContext: context) {
-            self.init(entity: ent, insertIntoManagedObjectContext: context)
-            self.id = NSNumber(unsignedInteger: id)
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.stack.context, let ent = NSEntityDescription.entity(forEntityName: Pokemon.entityName(), in: context) {
+            self.init(entity: ent, insertInto: context)
+            self.id = NSNumber(value: id as UInt)
             self.name = name
         } else {
             fatalError("Unable to find Entity name!")
