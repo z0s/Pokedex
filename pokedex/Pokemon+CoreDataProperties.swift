@@ -15,7 +15,7 @@ import CoreData
 extension Pokemon {
 
     @NSManaged var name: String
-    @NSManaged var imageData: NSData?
+    @NSManaged var imageData: Data?
     @NSManaged var types: [String]
     @NSManaged var descriptionString: String
     @NSManaged var id: NSNumber
